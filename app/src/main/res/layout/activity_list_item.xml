@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#bfbfbf">
+
+    <!--1라인-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:id="@+id/txtNo"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1번"
+            android:background="@color/white"
+            android:layout_margin="5px"
+            />
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="정우성"
+            android:background="@color/white"
+            android:layout_margin="5px"
+            />
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="2021/08/19"
+            android:background="@color/white"
+            android:layout_margin="5px"
+            />
+    </LinearLayout>
+    <!--//1라인-->
+
+    <!--2라인-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/txtContent"
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:text="게스트북 내용"
+            android:background="@color/white"
+            android:layout_margin="5px"
+            />
+    </LinearLayout>
+    <!--//2라인-->
+</LinearLayout>

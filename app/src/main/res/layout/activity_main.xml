@@ -9,35 +9,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150px"
-            android:gravity="center"
-            android:weightSum="10"
-            >
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:textSize="50px"
-                android:layout_weight="2"
-                />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:hint="이름을 입력해주세요"
-                android:layout_gravity="bottom"
-                />
-
-        </LinearLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="방명록 작성하기"
+        app:titleTextColor="#FFFFFF"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="450px"
+        android:layout_height="150px"
+        android:gravity="center"
+        android:weightSum="10"
+        >
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textSize="50px"
+            android:layout_weight="2"
+            />
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:hint="이름을 입력해주세요"
+            android:layout_gravity="bottom"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="top|center"
-        android:weightSum="10">
+        android:weightSum="10"
+        >
 
         <TextView
             android:layout_width="0px"
@@ -47,6 +58,7 @@
             android:textSize="50px" />
 
         <EditText
+            android:id="@+id/edtPassword"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -54,17 +66,21 @@
             android:inputType="textPassword"
             />
 
-    </LinearLayout>
+        </LinearLayout>
+
     <EditText
+        android:id="@+id/edtContent"
         android:layout_width="match_parent"
         android:layout_height="300px"
         android:hint="내용을 입력해주세요"
-        android:gravity="bottom"
+        android:gravity="top"
         />
     <Button
+        android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save"
         android:textColor="@color/white"
         />
+
 </LinearLayout>
