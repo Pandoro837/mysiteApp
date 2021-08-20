@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,7 +13,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.javaex.vo.GuestBookVo;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,10 +71,12 @@ public class MainActivity extends AppCompatActivity {
 
                 //서버에 전송
                 Log.d("javaStudy", "onClick: 서버에 전송하기");
+                WriteAsyncTask writeAsyncTask = new WriteAsyncTask();
+                writeAsyncTask.execute(guestBookVo);
+
 
                 //리스트 액티비티로 전환
-                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                startActivity(intent);
+//
 
             }
         });
@@ -88,4 +99,75 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //이너클래스 - AsyncTask
+
+    public class WriteAsyncTask extends AsyncTask<GuestBookVo, String, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(GuestBookVo... guestBookVos) {
+
+            Log.d("javaStudy", "doInBackground: " +guestBookVos[0].toString() );
+
+            //Vo - > json
+            Gson gson = new Gson();
+            String json = gson.toJson(guestBookVos[0]);
+            Log.d("javaStudy", "doInBackground: " + json);
+
+            //데이터 전송 (json - > body)
+            try{
+                //접속 정보
+                URL url = new URL("http://192.168.0.199:8088/mysite5/api/guestbook/write2");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setConnectTimeout(10000);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("Accept", "application/json");
+
+                //데이터 요청
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+
+                //OutputStream(json - > body)
+                OutputStream out = conn.getOutputStream();
+                OutputStreamWriter osw = new OutputStreamWriter(out);
+                BufferedWriter bw = new BufferedWriter(osw);
+
+                bw.write(json);
+                bw.flush();
+                bw.close();
+
+                int resCode = conn.getResponseCode(); // 응답코드 200이 정상
+
+                Log.d("javaStudy", "resCode: "+resCode);
+
+                if(resCode == 200) { //정상이면
+                    Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                    startActivity(intent);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+        }
+
+    }
+
 }
