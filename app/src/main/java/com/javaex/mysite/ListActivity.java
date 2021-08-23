@@ -2,11 +2,13 @@ package com.javaex.mysite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,13 +29,37 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
 
     private ListView lstGuestBook;
+    private Button btnWriteForm;
 
+    //액티비티가 시작될 때
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         //ListView를 객체화한다
         lstGuestBook = (ListView) findViewById(R.id.lstGuestBook);
+        btnWriteForm = (Button) findViewById(R.id.btnWriteForm);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        //writeForm 버튼의 클릭 이벤트
+        btnWriteForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("javaStudy", "onClick: btnWrite");
+
+                //인텐트를 이용, 화면 이동
+                Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    //액티비티가 다시 보일 때
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         //데이터 요청 및 화면에 그리기
         ListAsyncTask listAsyncTask = new ListAsyncTask();
@@ -48,15 +74,26 @@ public class ListActivity extends AppCompatActivity {
 
                 //화면에 있는 값을 읽어온다
                 TextView txtContent = (TextView) view.findViewById(R.id.txtContent);
-                Log.d("javaStudy", "onItemClick: content : " + txtContent.getText().toString());
+                //Log.d("javaStudy", "onItemClick: content : " + txtContent.getText().toString());
 
                 //화면에 출력되지 않는 데이터를 가져올 때 --> 리스트의 값을 사용할 때
                 GuestBookVo guestBookVo = (GuestBookVo) adapterView.getItemAtPosition(i);
-                Log.d("javaStudy", "onItemClick: Vo : " + guestBookVo.toString());
-                Log.d("javaStudy", "onItemClick: Vo.date : " + guestBookVo.getRegDate());
+                //Log.d("javaStudy", "onItemClick: Vo : " + guestBookVo.toString());
+                //Log.d("javaStudy", "onItemClick: Vo.date : " + guestBookVo.getRegDate());
 
                 //클릭한 아이템의 pk값을 읽어온다
                 int no = guestBookVo.getNo();
+                String name = guestBookVo.getName();
+                String regDate = guestBookVo.getRegDate();
+                String content = guestBookVo.getContent();
+
+                ////////////////////////////////////////////////////////////////////////////////////
+                //글 읽기 액티비티로 이동
+                ////////////////////////////////////////////////////////////////////////////////////
+                Intent intent = new Intent(ListActivity.this, ReadActivity.class);
+                intent.putExtra("no",no);
+
+                startActivity(intent);
 
                 Log.d("javaStudy", "onItemClick: Vo.no : " + no);
             }
@@ -79,7 +116,7 @@ public class ListActivity extends AppCompatActivity {
 
             try {
                 //서버에 연결
-                URL url = new URL("http://192.168.0.199:8088/mysite5/api/guestbook/list"); //url 생성
+                URL url = new URL("http://192.168.0.104:8088/mysite5/api/guestbook/list"); //url 생성
                 HttpURLConnection conn = (HttpURLConnection)url.openConnection(); //url 연결
                 conn.setConnectTimeout(10000);  // 10초 동안 기다린 후 응답이 없으면 종료
                 conn.setRequestMethod("POST");  // 요청방식 POST

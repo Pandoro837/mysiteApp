@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReadActivity"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="방명록 읽기"
+        app:titleTextColor="@color/white"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20px"
+        >
+
+        <!--게시글 번호-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="10"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:text="게시글 번호"
+                android:textSize="80px"
+                android:padding="30px"
+                />
+
+            <TextView
+                android:id="@+id/txtGuestBookNo"
+                android:layout_width="0px"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="80px"
+                android:padding="30px"
+                android:gravity="right"
+                />
+        </LinearLayout>
+
+        <!--이름-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="10"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                android:textSize="80px"
+                android:padding="30px"
+                />
+
+            <TextView
+                android:id="@+id/txtGuestBookName"
+                android:layout_width="0px"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:text="정우성"
+                android:textSize="80px"
+                android:padding="30px"
+                android:gravity="right"
+                />
+        </LinearLayout>
+
+        <!--날짜-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="10"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="등록일"
+                android:textSize="80px"
+                android:padding="30px"
+                />
+
+            <TextView
+                android:id="@+id/txtGuestBookRegDate"
+                android:layout_width="0px"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:text="2021/08/23"
+                android:textSize="80px"
+                android:padding="30px"
+                android:gravity="right"
+                />
+        </LinearLayout>
+
+        <!--내용-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="333dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:padding="30px"
+                android:text="내용"
+                android:textSize="80px"
+
+                />
+
+            <TextView
+                android:id="@+id/txtGuestBookContent"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:padding="30px"
+                android:text="본문입니다"
+                android:textSize="80px"
+
+                />
+        </LinearLayout>
+
+        <!--버튼-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="350px"
+            >
+            <Button
+                android:id="@+id/btnList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="리스트로 돌아가기"
+                android:textSize="80px" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
