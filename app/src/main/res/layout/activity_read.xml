@@ -141,18 +141,13 @@
         </LinearLayout>
 
         <!--버튼-->
-        <LinearLayout
+        <Button
+            android:id="@+id/btnList"
             android:layout_width="match_parent"
-            android:layout_height="350px"
-            >
-            <Button
-                android:id="@+id/btnList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="리스트로 돌아가기"
-                android:textSize="80px" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="리스트로 돌아가기"
+            android:textSize="80px" />
 
     </LinearLayout>
 

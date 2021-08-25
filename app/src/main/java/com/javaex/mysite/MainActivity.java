@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             //데이터 전송 (json - > body)
             try{
                 //접속 정보
-                URL url = new URL("http://192.168.0.104:8088/mysite5/api/guestbook/write2");
+                URL url = new URL("http://192.168.0.199:8088/mysite5/api/guestbook/write2");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(10000);
                 conn.setRequestMethod("POST");

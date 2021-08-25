@@ -116,7 +116,7 @@ public class ListActivity extends AppCompatActivity {
 
             try {
                 //서버에 연결
-                URL url = new URL("http://192.168.0.104:8088/mysite5/api/guestbook/list"); //url 생성
+                URL url = new URL("http://192.168.0.199:8088/mysite5/api/guestbook/list"); //url 생성
                 HttpURLConnection conn = (HttpURLConnection)url.openConnection(); //url 연결
                 conn.setConnectTimeout(10000);  // 10초 동안 기다린 후 응답이 없으면 종료
                 conn.setRequestMethod("POST");  // 요청방식 POST

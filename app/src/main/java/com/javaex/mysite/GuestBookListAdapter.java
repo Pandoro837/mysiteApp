@@ -31,7 +31,7 @@ public class GuestBookListAdapter extends ArrayAdapter<GuestBookVo> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //리스트 하나를 그려내는 코드, position = 리스트에서 현재 위치에 해당하는 인덱스 넘버(첫번째 리스트 뷰 = 0번 인덱스)
-        Log.d("javaStudy", "getView: position - " + position);
+        //Log.d("javaStudy", "getView: position - " + position);
 
         //리스트 View에 리스트 아이템 객체가 없을 경우, view == null일때 리스트 아이템 객체 생성
         if(convertView == null) {
